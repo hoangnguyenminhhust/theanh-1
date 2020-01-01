@@ -6,7 +6,8 @@ const mongoose = require('mongoose')
 
 const bodyParser = require('body-parser')
 const User = require('./models/userModel')
-const test = require('./test')
+const auto = require('./test')
+const route = require('./routes/routes')
 require('dotenv').config()
 const port = process.env.PORT || 3000
 //connect mongo
@@ -37,10 +38,10 @@ mongoose.connect('mongodb://localhost/database_faker1', {
     //     console.timeEnd('index')
     // }
 )
-
 app.use(express.json())
 app.use(express.urlencoded({
     extended: true
 }))
-
+route(app)
+// auto(1000)
 app.listen(port, () => console.log("connect to " + port))
